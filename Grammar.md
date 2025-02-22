@@ -49,3 +49,55 @@ Needs more sleep
 ```
 Needs more tea
 ```
+
+## Function behaviour and Types
+Return types work like in any other C language:
+```
+int Function : {}
+```
+Functions can return every variable type and custom struct + void
+
+But the function does not use "()" for the variables:
+```
+int Function : int a, int b 
+{
+    return a + b;
+}
+```
+
+## Custom Structs
+The current ways to create different types, schemas and classes
+### Type
+They are a more complex way to struct your memory, types cant have functions
+```
+Type example {
+    int a;
+    zit b;
+}
+```
+### Schema
+Classes but every variable(if not defined elsehow) are public
+```
+Schema example {
+    int a;
+    float b;
+
+    example: int aIn, float bIn {
+        a = aIn;
+        b = bIn;
+    }
+}
+```
+### Class
+Every variable(if not defined elsehow) are private
+```
+Class example {
+    int a;
+    float b;
+
+    example: int aIn, float bIn {
+        a = aIn;
+        b = bIn;
+    }
+}
+```
