@@ -45,7 +45,7 @@ Arrays cant be initialized without size, will throw error on compilation
 ```
 Needs more sleep
 ```
-### Map˙
+### Map
 ```
 Needs more tea
 ```
