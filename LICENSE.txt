@@ -1,0 +1,11 @@
+No-Fork License v1.0
+
+Copyright (c) 2025 TanyasiPills
+
+Permission is hereby granted to any person to use this software for personal or commercial purposes, subject to the following restrictions:
+
+No Redistribution - You may not distribute, share, sublicense, or publicly publish this software or any of its derivatives.
+
+No Forking or Remakes - You may not fork, modify, or create derivative works of this software with the intent to redistribute or make it publicly available.
+
+Private Modifications Allowed - You may modify this software for personal or internal business use, but such modifications must not be shared or distributed.
