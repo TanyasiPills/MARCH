@@ -21,4 +21,31 @@ loT - 256 bit - 32 byte
 
 zit - 128 bit - 16 byte -> floating point type
 ziT - 256 bit - 32 byte -> floating point type
+
+pointer:
+:int - pointer to an int
+:float - pointer to a float
+and so on...
+```
+## Data Structures
+Larger elements that can hold multiple variables
+### List
+```
+List:int exampleList; //Default memory size: size of the set variable type(int in this case) + pointer to next element
+
+Each element has a pointer to the next one, structured as a linked list
+```
+### Array
+```
+Array:int exampleArray[200]; //Default memory size: pointer to the start + size of variable(int in this case) times the size of the array
+
+Arrays cant be initialized without size, will throw error on compilation
+```
+### Dictionary
+```
+Needs more sleep
+```
+### Map˙
+```
+Needs more tea
 ```
