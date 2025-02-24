@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     }
 
     std::string input_filename = argv[1];
-    std::string output_filename = "main.ch";
+    std::string output_filename = "main.exe";
 
     for (int i = 2; i < argc; ++i) {
         if (std::string(argv[i]) == "-o" && i + 1 < argc) {
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
     while (std::getline(input_file, line)) {
         log_info("Processing: " + line);
     }
-    
+
     std::ofstream output_file(output_filename);
     if (output_file) {
         output_file << "Compiler output for: " << input_filename;
