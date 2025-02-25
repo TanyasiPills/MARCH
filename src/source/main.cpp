@@ -1,18 +1,12 @@
-#include <iostream>
-#include <fstream>
 #include <string>
 
-void log_error(const std::string& message) {
-    std::cerr << "Error: " << message << "\n";
-}
-void log_info(const std::string& message) {
-    std::cout << message << "\n";
-}
+#include "Logger.h"
+#include "Lexer.h"
 
 int main(int argc, char* argv[])
 {
     if(argc < 2){
-        std::cout << "No input file" << std::endl;
+        Log("No input file");
         return 1;
     }
 
@@ -26,24 +20,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    std::ifstream input_file(input_filename);
-    if (!input_file) {
-        log_error("Could not open input file: " + input_filename);
-        return 1;
-    }
-
-    std::string line;
-    while (std::getline(input_file, line)) {
-        log_info("Processing: " + line);
-    }
-
-    std::ofstream output_file(output_filename);
-    if (output_file) {
-        output_file << "Compiler output for: " << input_filename;
-        log_info("Output written to: " + output_filename);
-    } else {
-        log_error("Failed to write to output file: " + output_filename);
-    }
-
+    if(Lexer::ProcessFile(input_filename)) return 1;
+    
     return 0;
 }
