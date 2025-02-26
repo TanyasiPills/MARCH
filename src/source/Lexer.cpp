@@ -143,6 +143,8 @@ void Lexer::ScanToken(char& tokenIn)
     token = tokenIn;
     switch (token)
     {
+    case ' ':
+        break;
     case '=':
         PushToken(assingType, true);
         break;
@@ -151,6 +153,21 @@ void Lexer::ScanToken(char& tokenIn)
         PushToken(lineType, true);
         break;
     case '+':
+        PushToken(additionType, true);
+        break;
+    case '-':
+        PushToken(subtractioType, true);
+        break;
+    case '*':
+        PushToken(subtractioType, true);
+        break;
+    case '/':
+        PushToken(subtractioType, true);
+        break;
+    case ':':
+        PushToken(functionType, true);
+        break;
+    case ';':
         PushToken(additionType, true);
         break;
     default:

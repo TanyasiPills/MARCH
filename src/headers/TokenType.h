@@ -14,6 +14,8 @@ enum TokenType{
     subtractioType, //7
 
     //file
+    functionType,
+    commandType,
     lineType,       //8
     EOFType         //9
 };
