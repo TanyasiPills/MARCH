@@ -2,17 +2,21 @@
 
 #include <string>
 #include <fstream>
+#include <vector>
+
+#include "TokenType.h"
+#include "Token.h"
 
 class Lexer
 {
 private:
-    static std::vector<Token> tokens;
     static std::ifstream file;
     static int startPos;
     static int currentPos;
     static int line;
     static char token;
 public:
+    static std::vector<Token> tokens;
     static int ProcessFile(std::string file);
     static char Peek(int offset = 1);
     static int SetFile(std::string fileIn);

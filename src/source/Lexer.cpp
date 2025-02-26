@@ -2,7 +2,6 @@
 
 #include "Lexer.h"
 #include "Logger.h"
-#include "Token.h";
 
 std::vector<Token> Lexer::tokens;
 int Lexer::currentPos = 0;
@@ -60,12 +59,12 @@ bool Lexer::IsDigit(char& charIn)
 
 void Lexer::AddToken(TokenType type)
 {
-    tokens.emplace_back(Token(type, token, line));
+    tokens.emplace_back(type, std::string(&token), line);
 }
 
 void Lexer::ScanToken(char& tokenIn)
 {
-    token = tokenIn
+    token = tokenIn;
     switch (token)
     {
     case '=':

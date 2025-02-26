@@ -1,8 +1,10 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 #include "TokenType.h"
+
 
 class Token
 {
@@ -14,17 +16,5 @@ public:
     Token(TokenType type, std::string lexeme, int line);
     ~Token();
 
-    friend std::ostream& operator<<(std::ostream& os, const Token& token)
-    {
-        os << "Token type: " << token.type << "; Text: " << token.lexeme << "; Line: " << token.line << "\n";
-        return os;
-    }
+    friend std::ostream& operator<<(std::ostream& os, const Token& token);
 };
-
-Token::Token()
-{
-}
-
-Token::~Token()
-{
-}
