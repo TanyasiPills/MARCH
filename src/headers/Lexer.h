@@ -7,6 +7,7 @@
 #include "TokenType.h"
 #include "Token.h"
 
+
 class Lexer
 {
 private:
@@ -15,15 +16,21 @@ private:
     static int currentPos;
     static int line;
     static char token;
+    static std::string wholeToken;
 public:
     static std::vector<Token> tokens;
     static int ProcessFile(std::string file);
     static char Peek(int offset = 1);
     static int SetFile(std::string fileIn);
     static void ScanToken(char& token);
-    static void AddToken(TokenType type);
+    static void PushToken(TokenType type, bool push);
     static bool Match(char charIn);
-    static bool IsAlphabetic(char& charIn);
-    static bool IsDigit(char& charIn);
+    static bool IsAlphabetic(char& tokenIn);
+    static bool IsDigit(char& tokenIn);
+    static bool IsAlphaNumeric(char tokenIn);
+    static void ScanLong();
+    static char TakeNext();
+    static void NumberToken();
+    static void IdentifierToken();
 };
 

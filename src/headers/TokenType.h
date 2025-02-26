@@ -2,16 +2,18 @@
 
 enum TokenType{
     //Variables
-    intType, 
-    inTType,
-    stringType,
+    intType,        //0
+    inTType,        //1
+    stringType,     //2
+    nameType,       //3
+    valueType,      //4
 
     //Math
-    assingType,
-    additionType,
-    subtractioType,
+    assingType,     //5
+    additionType,   //6
+    subtractioType, //7
 
     //file
-    lineType,
-    EOFType
+    lineType,       //8
+    EOFType         //9
 };
