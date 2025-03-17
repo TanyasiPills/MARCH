@@ -4,13 +4,19 @@ Token type: 3; Text: a; Line: 1
 
 Token type: 5; Text: =; Line: 1
 
-Token type: 4; Text: 1; Line: 1
+Token type: 4; Text: 3; Line: 1
 
-Token type: 8; Text: 
-; Line: 2
+Token type: 9; Text: ;; Line: 1
 
-Token type: 8; Text: 
-; Line: 3
+Token type: 2; Text: string; Line: 2
 
-Token type: 9; Text: ; Line: 3
+Token type: 3; Text: b; Line: 2
+
+Token type: 5; Text: =; Line: 2
+
+Token type: 4; Text: 4; Line: 2
+
+Token type: 9; Text: ;; Line: 2
+
+Token type: 11; Text: ; Line: 2
 

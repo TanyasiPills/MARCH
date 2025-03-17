@@ -20,13 +20,13 @@ private:
 public:
     static std::vector<Token> tokens;
     static int ProcessFile(std::string file);
-    static char Peek(int offset = 1);
+    static char Peek(int offset = 0);
     static int SetFile(std::string fileIn);
     static void ScanToken(char& token);
-    static void PushToken(TokenType type, bool push);
+    static void PushToken(TokenType type);
     static bool Match(char charIn);
-    static bool IsAlphabetic(char& tokenIn);
-    static bool IsDigit(char& tokenIn);
+    static bool IsAlphabetic(char tokenIn);
+    static bool IsDigit(char tokenIn);
     static bool IsAlphaNumeric(char tokenIn);
     static void ScanLong();
     static char TakeNext();

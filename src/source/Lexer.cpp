@@ -1,5 +1,6 @@
 #include <vector>
 #include <unordered_map>
+#include <fstream>
 
 #include "Lexer.h"
 #include "Logger.h"
@@ -49,7 +50,7 @@ char Lexer::Peek(int offset)
     if(!file) return EOF;
 
     std::streampos currentPos = file.tellg();
-    file.seekg(currentPos + std::streamoff(offset));
+    file.seekg(offset, std::ios::cur);
 
     char nextChar = file.get();
 
@@ -66,21 +67,21 @@ bool Lexer::Match(char charIn)
     else return false;
 }
 
-bool Lexer::IsAlphabetic(char& tokenIn)
+bool Lexer::IsAlphabetic(char tokenIn)
 {
     return  (tokenIn >= 'a' && tokenIn <= 'z') ||
             (tokenIn >= 'A' && tokenIn <= 'Z') ||
             tokenIn == '_';
 }
 
-bool Lexer::IsDigit(char& tokenIn)
+bool Lexer::IsDigit(char tokenIn)
 {
     return (tokenIn >= '0' && tokenIn <= '9');// || tokenIn == '.';
 }
 
-void Lexer::PushToken(TokenType type, bool push)
+void Lexer::PushToken(TokenType type)
 {
-    if(push) wholeToken += token;
+    wholeToken += token;
     tokens.emplace_back(type, wholeToken, line);
 }
 
@@ -99,6 +100,7 @@ void Lexer::ScanLong()
     }
     else if(IsAlphabetic(token))
     {
+        std::cout << "Alphabetic: " << token << std::endl;
         IdentifierToken();
     }
     else{
@@ -115,26 +117,39 @@ bool Lexer::IsAlphaNumeric(char tokenIn)
 
 void Lexer::IdentifierToken()
 {
-    do
-    {
-        wholeToken += token;
-        if (identityKeyMap.find(wholeToken) != identityKeyMap.end()) {
-            tokens.emplace_back(identityKeyMap[wholeToken], wholeToken, line);
-            return;
+    bool run = true;
+    wholeToken += token;
+
+    while(run){
+        if(IsAlphaNumeric(Peek())) {
+            TakeNext();
+            wholeToken += token;
         }
-    } while (IsAlphaNumeric(TakeNext()));
+        else run = false;
+    }
+
+    if (identityKeyMap.find(wholeToken) != identityKeyMap.end()) {
+        tokens.emplace_back(identityKeyMap[wholeToken], wholeToken, line);
+        return;
+    }
 
     tokens.emplace_back(nameType, wholeToken, line);  
 }
 
 void Lexer::NumberToken()
 {
-    do
-    {
-        wholeToken += token;
-    } while (IsAlphaNumeric(TakeNext()));
+    bool run = true;
+    wholeToken += token;
 
-    tokens.emplace_back(valueType, wholeToken, line);
+    while(run){
+        if(IsDigit(Peek())) {
+            TakeNext();
+            wholeToken += token;
+        }
+        else run = false;
+    }
+
+    tokens.emplace_back(numberType, wholeToken, line);
 }
 
 void Lexer::ScanToken(char& tokenIn)
@@ -146,29 +161,28 @@ void Lexer::ScanToken(char& tokenIn)
     case ' ':
         break;
     case '=':
-        PushToken(assingType, true);
+        PushToken(assingType);
         break;
     case '\n':
         line++;
-        PushToken(lineType, true);
         break;
     case '+':
-        PushToken(additionType, true);
+        PushToken(additionType);
         break;
     case '-':
-        PushToken(subtractioType, true);
+        PushToken(subtractioType);
         break;
     case '*':
-        PushToken(subtractioType, true);
+        PushToken(subtractioType);
         break;
     case '/':
-        PushToken(subtractioType, true);
+        PushToken(subtractioType);
         break;
     case ':':
-        PushToken(functionType, true);
+        PushToken(functionType);
         break;
     case ';':
-        PushToken(additionType, true);
+        PushToken(lineType);
         break;
     default:
         ScanLong();

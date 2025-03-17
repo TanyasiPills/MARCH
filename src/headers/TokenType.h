@@ -6,16 +6,18 @@ enum TokenType{
     inTType,        //1
     stringType,     //2
     nameType,       //3
-    valueType,      //4
+    numberType,     //4
+    charType,       //5
+    textType,       //6
 
     //Math
-    assingType,     //5
-    additionType,   //6
-    subtractioType, //7
+    assingType,     //7
+    additionType,   //8
+    subtractioType, //9
 
     //file
-    functionType,
-    commandType,
-    lineType,       //8
-    EOFType         //9
+    functionType,   //10
+    commandType,    //11
+    lineType,       //12
+    EOFType         //13
 };
