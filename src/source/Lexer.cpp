@@ -201,6 +201,7 @@ int Lexer::ProcessFile(std::string fileIn)
     }
     tokens.emplace_back(EOFType, "", line);
 
+
     WriteTokensToFile(tokens, "output.out");
 
     return 0;

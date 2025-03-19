@@ -2,6 +2,7 @@
 
 #include "Logger.h"
 #include "Lexer.h"
+#include "Parser.h"
 
 int main(int argc, char* argv[])
 {
@@ -21,6 +22,8 @@ int main(int argc, char* argv[])
     }
 
     if(Lexer::ProcessFile(input_filename)) return 1;
+
+    
     
     return 0;
 }
