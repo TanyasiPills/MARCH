@@ -4,4 +4,4 @@
 class Parser{
 private:
     static std::vector<Token> tokens;
-}
+};
