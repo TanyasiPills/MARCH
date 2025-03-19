@@ -14,6 +14,12 @@ enum TokenType{
     assingType,     //7
     additionType,   //8
     subtractioType, //9
+    multiplicationType,
+    divisionType,
+
+    //logic
+    LBraceType,
+    RBraceType,
 
     //file
     functionType,   //10

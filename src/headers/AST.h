@@ -9,19 +9,17 @@ public:
 class IntNode : public AST {
 public:
     int value;
-    TokenType type;
 
     IntNode(int valueIn, TokenType typeIn) 
-        : value(valueIn), type(typeIn) {}   
+        : value(valueIn) {}   
 };
 
 class BinaryOPNode : public AST {
 public:
-    enum class Op {ADD, SUB, MUL, DIV};
     std::shared_ptr<AST> left, right;
-    Op op;
+    TokenType op;
 
-    BinaryOPNode(std::shared_ptr<AST> leftIn, std::shared_ptr<AST> rightIn, Op opIn) 
+    BinaryOPNode(std::shared_ptr<AST> leftIn, std::shared_ptr<AST> rightIn, TokenType opIn) 
         : left(leftIn), right(rightIn), op(opIn) {}   
 };
 
