@@ -1,5 +1,26 @@
 #include "Parser.h"
+#include <stdexcept>
 
+std::queue<Token> Parser::tokens;
+Token Parser::currentToken;
+
+std::shared_ptr<AST> Parser::Parse(std::vector<Token>& tokensIn)
+{
+    for(Token item : tokensIn)
+    {
+        tokens.push(item);
+    }
+    currentToken = tokens.front();
+    return Expression();
+}
+
+void Parser::ConsumeToken(){
+    if(!tokens.empty())
+        tokens.pop();
+        if(!tokens.empty())
+            currentToken = tokens.front();
+    else std::cout << "Parser was empty, couldn't pop token";
+}
 std::shared_ptr<AST> Parser::Expression()
 {
     auto left = Term();
@@ -11,7 +32,7 @@ std::shared_ptr<AST> Parser::Expression()
 
         auto right = Term();
 
-        left = std::make_shared<BinaryOPNode>(left, right, op);
+        left = std::make_shared<BinaryOpNode>(left, right, op);
     }
 
     return left;
@@ -30,6 +51,8 @@ std::shared_ptr<AST> Parser::Term()
 
         left = std::make_shared<BinaryOpNode>(left, right, op); 
     }
+    
+    return left;
 }
 
 std::shared_ptr<AST> Parser::Factor()
@@ -52,5 +75,5 @@ std::shared_ptr<AST> Parser::Factor()
         return std::make_shared<GroupNode>(expr);
     }
 
-    throw std::runtime_error("Unexpected token at line: "+currentToken.line+"; Token: "+currentToken.lexeme);
+    throw std::runtime_error("Unexpected token at line: "+std::to_string(currentToken.line)+"; Token: "+currentToken.lexeme);
 }

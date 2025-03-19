@@ -22,5 +22,7 @@ int main(int argc, char* argv[])
     }
 
     if(Lexer::ProcessFile(input_filename)) return 1;
+    auto resultOfParse = Parser::Parse(Lexer::tokens);
+    resultOfParse->print();
     return 0;
 };

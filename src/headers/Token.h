@@ -10,17 +10,22 @@
 class Token
 {
 private:
+public:
     TokenType type;
     std::string lexeme;
     int line;
-public:
+
     Token(TokenType type, std::string lexeme, int line)
     : type(type), lexeme(lexeme), line(line) {
 
     }
+
+    Token() = default;
+
     ~Token(){
 
     }
+
 
     friend std::ostream& operator<<(std::ostream& os, const Token& token){
         os << "Token type: " << static_cast<int>(token.type)

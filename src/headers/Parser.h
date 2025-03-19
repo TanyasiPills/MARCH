@@ -11,5 +11,6 @@ private:
     static std::shared_ptr<AST> Factor();
 
     static void ConsumeToken();
-
+public:
+    static std::shared_ptr<AST> Parse(std::vector<Token>& tokensIn);
 };

@@ -173,10 +173,10 @@ void Lexer::ScanToken(char& tokenIn)
         PushToken(subtractioType);
         break;
     case '*':
-        PushToken(subtractioType);
+        PushToken(multiplicationType);
         break;
     case '/':
-        PushToken(subtractioType);
+        PushToken(divisionType);
         break;
     case ':':
         PushToken(functionType);
