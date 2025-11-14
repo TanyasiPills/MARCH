@@ -26,7 +26,6 @@ public:
 
     }
 
-
     friend std::ostream& operator<<(std::ostream& os, const Token& token){
         os << "Token type: " << static_cast<int>(token.type)
        << "; Text: " << token.lexeme

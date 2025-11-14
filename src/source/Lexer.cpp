@@ -45,6 +45,9 @@ void WriteTokensToFile(const std::vector<Token>& tokens, const std::string& file
     outFile.close();
 }
 
+/// @brief Checks the next character without moving the current position
+/// @param offset tells how far to look ahead, 0: the next element
+/// @return the character of the searched position
 char Lexer::Peek(int offset)
 {
     if(!file) return EOF;
@@ -59,6 +62,10 @@ char Lexer::Peek(int offset)
     return nextChar;
 }
 
+
+///@brief Checks if the next character in the stream matches the input character.
+///@param charIn The character to compare against the next character.
+///@return true if the next character equals charIn, false otherwise.
 bool Lexer::Match(char charIn)
 {
     char temp = Peek();
@@ -66,25 +73,33 @@ bool Lexer::Match(char charIn)
     if(temp == charIn) return true;
     else return false;
 }
-
+/// @brief Check if token is alphabetic
+/// @param tokenIn The token to check
+/// @return true if the token is alphabetic
 bool Lexer::IsAlphabetic(char tokenIn)
 {
     return  (tokenIn >= 'a' && tokenIn <= 'z') ||
             (tokenIn >= 'A' && tokenIn <= 'Z') ||
             tokenIn == '_';
 }
-
+//Should do float & double at some point
 bool Lexer::IsDigit(char tokenIn)
 {
     return (tokenIn >= '0' && tokenIn <= '9');// || tokenIn == '.';
 }
+bool Lexer::IsAlphaNumeric(char tokenIn)
+{
+    return IsDigit(tokenIn) || IsAlphabetic(tokenIn);
+}
 
+//Pushes the token to the list to get parsed later
 void Lexer::PushToken(TokenType type)
 {
     wholeToken += token;
     tokens.emplace_back(type, wholeToken, line);
 }
 
+//Replaces the current token with the next one
 char Lexer::TakeNext()
 {
     if (!file) return '\0';
@@ -110,11 +125,7 @@ void Lexer::ScanLong()
     }
 }
 
-bool Lexer::IsAlphaNumeric(char tokenIn)
-{
-    return IsDigit(tokenIn) || IsAlphabetic(tokenIn);
-}
-
+//Creates the variable token
 void Lexer::IdentifierToken()
 {
     bool run = true;
@@ -136,6 +147,7 @@ void Lexer::IdentifierToken()
     tokens.emplace_back(nameType, wholeToken, line);  
 }
 
+//Creates the number token
 void Lexer::NumberToken()
 {
     bool run = true;
@@ -185,6 +197,7 @@ void Lexer::ScanToken(char& tokenIn)
         PushToken(lineType);
         break;
     default:
+        //Check for variables if the token is not a base operator
         ScanLong();
         break;
     }
@@ -196,11 +209,10 @@ int Lexer::ProcessFile(std::string fileIn)
 
     char ch;
     while (file.get(ch)) {  
-        startPos = currentPos;
         ScanToken(ch);
     }
     tokens.emplace_back(EOFType, "", line);
-
+    file.close();
 
     WriteTokensToFile(tokens, "output.out");
 

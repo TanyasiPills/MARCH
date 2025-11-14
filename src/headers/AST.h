@@ -8,9 +8,9 @@ public:
 };
 
 class IntNode : public AST {
-public:
+private:
     int value;
-
+public:
     IntNode(int valueIn) 
         : value(valueIn) {}   
 
@@ -20,10 +20,10 @@ public:
 };
 
 class BinaryOpNode : public AST {
-public:
+private:
     std::shared_ptr<AST> left, right;
     TokenType op;
-
+public:
     BinaryOpNode(std::shared_ptr<AST> leftIn, std::shared_ptr<AST> rightIn, TokenType opIn) 
         : left(leftIn), right(rightIn), op(opIn) {}   
 
@@ -42,9 +42,9 @@ public:
 };
 
 class GroupNode : public AST {
-public:
+private:
     std::shared_ptr<AST> expression;
-
+public:
     GroupNode(std::shared_ptr<AST> expr) 
         : expression(expr) {}
 
@@ -52,5 +52,19 @@ public:
         std::cout << "(";
         expression->print();
         std::cout << ")";
+    }
+};
+
+class AssignmentNode : public AST {
+private:
+    std::string variableName;
+    std::shared_ptr<AST> expression;
+public:
+    AssignmentNode(const std::string& var, std::shared_ptr<AST> expr)
+        : variableName(var), expression(expr) {}
+
+    void print() const override {
+        std::cout << variableName << " = ";
+        expression->print();
     }
 };

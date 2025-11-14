@@ -1,16 +1,12 @@
-Token type: 4; Text: 2; Line: 1
+Token type: 4; Text: 1; Line: 1
 
 Token type: 8; Text: +; Line: 1
 
-Token type: 4; Text: 4; Line: 1
+Token type: 4; Text: 1; Line: 1
 
-Token type: 9; Text: *; Line: 1
+Token type: 7; Text: =; Line: 1
 
 Token type: 4; Text: 2; Line: 1
-
-Token type: 9; Text: -; Line: 1
-
-Token type: 4; Text: 4; Line: 1
 
 Token type: 17; Text: ; Line: 1
 
